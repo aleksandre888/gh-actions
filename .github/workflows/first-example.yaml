@@ -1,0 +1,14 @@
+name: My First Workflow
+
+on: push
+
+jobs:
+    first_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Welcome message
+          run: echo "Github Actions Practice" | tee workflow.txt
+        - name: Check file
+          run: ls -lha workflow.txt
+        - name: Read file
+          run: cat workflow.txt
