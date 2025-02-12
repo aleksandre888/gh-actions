@@ -1,0 +1,17 @@
+name: Generate ASCII Art
+
+on: push
+
+jobs:
+    ascii_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+        
+        - name: Execute permissions for script
+          run: sudo chmod +x ascii.sh
+        
+        - name: Install cowsay
+          run: ./ascii.sh
+        
