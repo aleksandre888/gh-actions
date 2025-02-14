@@ -17,6 +17,7 @@ jobs:
 
     test_job:
         runs-on: ubuntu-latest
+        needs: build_job
         steps:
         - name: Test message
           run: echo "Testing..." && sleep 3
@@ -26,6 +27,7 @@ jobs:
 
     deploy_job:
       runs-on: ubuntu-latest
+      needs: [build_job, test_job]
       steps:
         - name: Deploy message
           run: echo "Deploying..." && sleep 3
