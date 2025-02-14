@@ -1,0 +1,35 @@
+name: Generate ASCII Art Multi Job
+
+on: push
+
+jobs:
+    build_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+        
+        - name: Install cowsay
+          run: sudo apt install cowsay -y
+        
+        - name: Generate art
+          run: cowsay -f dragon "I'm a dragon but today I chose to study DevOps" > dragon.txt
+
+    test_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Test message
+          run: echo "Testing..." && sleep 3
+
+        - name: Check if file exists
+          run: test -f dragon.txt
+
+    deploy_job:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Deploy message
+          run: echo "Deploying..." && sleep 3
+
+        - name: Read File
+          run: cat dragon.txt
+        

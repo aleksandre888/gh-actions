@@ -1,4 +1,4 @@
-name: Generate ASCII Art
+name: Generate ASCII Art with shell script
 
 on: push
 
