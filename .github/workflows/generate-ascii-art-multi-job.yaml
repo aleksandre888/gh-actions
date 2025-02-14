@@ -16,7 +16,7 @@ jobs:
           run: cowsay -f dragon "I'm a dragon but today I chose to study DevOps" > dragon.txt
 
         - name: Upload artifact
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v4
           with:
             name: dragon-artifact
             path: dragon.txt
@@ -26,7 +26,7 @@ jobs:
         needs: build_job
         steps:
         - name: Download artifact
-          uses: actions/download-artifact@v3
+          uses: actions/download-artifact@v4
           with:
             name: dragon-artifact
 
@@ -41,7 +41,7 @@ jobs:
       needs: test_job
       steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dragon-artifact
 
