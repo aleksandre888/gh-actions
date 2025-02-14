@@ -15,10 +15,21 @@ jobs:
         - name: Generate art
           run: cowsay -f dragon "I'm a dragon but today I chose to study DevOps" > dragon.txt
 
+        - name: Upload artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: dragon-artifact
+            path: dragon.txt
+
     test_job:
         runs-on: ubuntu-latest
         needs: build_job
         steps:
+        - name: Download artifact
+          uses: actions/download-artifact@v3
+          with:
+            name: dragon-artifact
+
         - name: Test message
           run: echo "Testing..." && sleep 3
 
@@ -29,9 +40,14 @@ jobs:
       runs-on: ubuntu-latest
       needs: test_job
       steps:
-        - name: Deploy message
-          run: echo "Deploying..." && sleep 3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dragon-artifact
 
-        - name: Read File
-          run: cat dragon.txt
+      - name: Deploy message
+        run: echo "Deploying..." && sleep 3
+
+      - name: Read File
+        run: cat dragon.txt
         
